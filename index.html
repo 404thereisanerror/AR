@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>AR Video Test</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs>
+      <a-assets>
+        <video id="plakat_1" src="./assets/images/plakat_1.mp4"
+               autoplay loop playsinline webkit-playsinline muted
+               crossorigin="anonymous">
+        </video>
+      </a-assets>
 
-<head>
-  <title>Ma première app AR</title>
-  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script> 
-</head>
+      <a-marker type="hiro">
+        <a-marker type="hiro">
+          <a-plane material="shader: flat; src: #plakat_1"
+                   width="4" height="2.25"
+                   position="0 0 0"
+                   rotation="-90 0 0">
+          </a-plane>
+        </a-marker>      </a-marker>
 
-<body>
-    <a-scene embedded
-    arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; trackingMethod: best ; changeMatrixMode: modelViewMatrix;"
-    renderer="sortObjects: true; antialias: true; colorManagement: true; logarithmicDepthBuffer: true;"
+      <a-entity camera></a-entity>
+    </a-scene>
 
-    vr-mode-ui="enabled: false"
-
-    smooth=" true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5"
-    
-    sourceWidth="800" sourceHeight="600" displayWidth="1280" displayHeight="720">
-
-      
-        <a-marker type='Hiro' value='2'>
-   
-            <a-text value="Help !" 
-            side="double" position = "0 0 -1" rotation="270 0 0" 
-            width="8"
-            color="red" align="center" >
-            </a-text>
-
-        </a-marker>
-
-        <a-entity camera></a-entity>
-  </a-scene>
-</body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const video = document.querySelector('#plakat_1');
+        // Trigger video on user interaction (for iOS and Android)
+        const tryPlay = () => {
+          video.play().then(() => {
+            console.log('Video play triggered successfully');
+          }).catch(err => {
+            console.error('Video play failed:', err);
+          });
+        };
+        document.body.addEventListener('click', tryPlay, { once: true });
+        document.body.addEventListener('touchstart', tryPlay, { once: true });
+      });
+    </script>
+  </body>
 </html>
