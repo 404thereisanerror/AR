@@ -10,19 +10,19 @@
     <a-scene embedded arjs>
       <a-assets>
         <video id="plakat_1" src="./assets/images/plakat_1.mp4"
-               autoplay loop playsinline webkit-playsinline muted
-               crossorigin="anonymous">
+               autoplay loop playsinline webkit-playsinline muted>
         </video>
       </a-assets>
 
-      <a-marker type="hiro">
+      
         <a-marker type="hiro">
+        
           <a-plane material="shader: flat; src: #plakat_1"
                    width="4" height="2.25"
                    position="0 0 0"
                    rotation="-90 0 0">
           </a-plane>
-        </a-marker>      </a-marker>
+        </a-marker>      
 
       <a-entity camera></a-entity>
     </a-scene>
@@ -44,3 +44,4 @@
     </script>
   </body>
 </html>
+
